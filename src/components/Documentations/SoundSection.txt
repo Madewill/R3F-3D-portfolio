@@ -1,0 +1,59 @@
+This code here allows for separate sounds for each sections (The Project and Contact section) but here I decided to use only the land which is what you would find in the jsx, this is however a guide to making different sounds for different sections
+
+
+import { useEffect, useRef } from "react";
+
+const SoundSection = (props) => {
+    const { sectionTitle, soundFile } = props;
+    const audioRef = useRef();
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.3,
+        };
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    audioRef.current.play();
+                } else {
+                    // Pause the audio when it's not in the viewport
+                    audioRef.current.pause();
+                }
+            },
+            options
+        );
+
+        observer.observe(document.getElementById(sectionTitle));
+
+        // Cleanup the observer when the component unmounts
+        return () => observer.disconnect();
+    }, [sectionTitle, soundFile]);
+
+    return (
+        <section id={sectionTitle} className="h-screen w-screen p-8 max-w-screen-2xl mx-auto">
+            <audio ref={audioRef} src={soundFile} />
+        </section>
+    );
+};
+
+export default SoundSection;
+
+
+==================================================================================================
+WRITE IN INTERFACE
+
+ return (
+    <div className="flex flex-col items-center w-screen">
+        <AboutSection setSection={setSection} />
+        <SkillsSection />
+        <SoundSection sectionTitle="projects" soundFile="/sounds/land.mp3">
+            <ProjectsSection />
+        </SoundSection>
+        <SoundSection sectionTitle="contact" soundFile="/sounds/teleport.mp3">
+            <ContactSection />
+        </SoundSection>
+    </div>
+);

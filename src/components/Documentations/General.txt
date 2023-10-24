@@ -1,0 +1,8 @@
+In the  Interface component, there was a reason I designated a custom styling with the line height of 1.2, I change font to poppins which is causing the texts to overlap, normally I could have use "leading-snug or leading-loose" which define line heigts with Tailwind, however, when the background of white is added to the second span, it causes the first span text to not be totally visible. 
+
+
+The ScrollAudio Jsx works only for the first Section, I tried to correct it but I had to stop there for now, so I decided to define the sound for the remaining sections, I could actually put them into this JSX but at this time , I couldn't achieve it so I  found a way to just make it work. It also triggers when I click the menu button.
+
+I decided to later not use the MobileLogo component, If you want to use you will add it to the app.jsx also what it does is make the logo clickable and appear in all sections but since I added a scroll-to-top button at the end, I felt I will just leave it as Logo.Jsx where it transforms to white and doesn't click.
+
+Didn't later use scroll Audio component
